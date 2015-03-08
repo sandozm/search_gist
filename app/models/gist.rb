@@ -5,7 +5,7 @@ class Gist < ActiveRecord::Base
 
 		uri = URI(uri)
 		req = Net::HTTP::Get.new(uri.to_s)
-		req.basic_auth("login", "password")
+		req.basic_auth("sandozmtemp", "azerty00")
 
 		Net::HTTP.start(uri.host, uri.port, :use_ssl => true) do |http|
 			response = http.request(req)
