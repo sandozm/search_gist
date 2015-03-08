@@ -1,0 +1,27 @@
+<div class="table-responsive">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Avatar</th>
+				<th>Auteur</th>
+				<th>Gists</th>
+				<th>ID</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @gists.each do |k, v| %>
+				
+				<tr>
+					<td><img class="avatar" src="<%= k['avatar_url'] %>"></td>	
+					<td><a href="<%= k['html_url'] %>"><%= k['owner'] %></a></td>
+					<td><%= k['description'] %></td>
+					<td><a href="https://gist.github.com/<%= k['login'] %>/<%= k['id_gist'] %>"><%= k['id_gist'] %></a></td>
+
+					<td><%= link_to image_tag("delete.png", alt: "Ajouter à votre liste"), { controller: "gist", action: "delete", id: k['id'] }, method: :delete, data: {confirm: "Etes-vous sûr de vouloir effacer ce gist ?" } %></td>
+				</tr>
+
+			<% end %>
+		</tbody>
+	</table>
+</div>

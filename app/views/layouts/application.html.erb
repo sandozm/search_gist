@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MyProject Gist Search</title>
+	<%= stylesheet_link_tag    'default', media: 'all', 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag "bootstrap.min" %>
+	<%= stylesheet_link_tag "main" %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag "jquery" %>
+	<%= javascript_include_tag "bootstrap.min" %>
+	<%= javascript_include_tag "main" %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<%= link_to 'Gists Search', root_url, class: 'navbar-brand' %>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><%= link_to 'Ma liste', controller: "gist", action: "list" %></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#search">Rechercher</a></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+
+
+	<div id="search">
+		<button type="button" class="close">×</button>
+		<form action="/" method="GET">
+			<input name="search" type="search" value="" placeholder="Votre recherche..." />
+			<button type="submit" class="btn btn-primary">Rechercher</button>
+		</form>
+	</div>
+	
+	<% if alert %>
+	<div class="alert alert-dismissable alert-danger">
+		<button class="close" data-dismiss="alert" type="button">×</button>
+		<strong><%= alert %></strong>
+	</div>
+	<% end %>
+
+	<% if notice %>
+	<div class="alert alert-dismissable alert-success">
+		<button class="close" data-dismiss="alert" type="button">×</button>
+		<strong><%= notice %></strong>
+	</div>
+	<% end %>
+	<%= yield %>
+
+</body>
+</html>

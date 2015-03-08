@@ -1,0 +1,29 @@
+<div class="table-responsive">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Avatar</th>
+				<th>Auteur</th>
+				<th>Gists</th>
+				<th>ID</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @gists.each do |k, v| %>
+				<% if !k['owner'].nil? %>
+				
+				<tr>
+					<td><img class="avatar" src="<%= k['owner']['avatar_url'] %>"></td>	
+					<td><a href="<%= k['owner']['html_url'] %>"><%= k['owner']['login'] %></a></td>
+					<td><%= k['description'] %></td>
+					<td><a href="https://gist.github.com/<%= k['owner']['login'] %>/<%= k['id'] %>"><%= k['id'] %></a></td>
+
+					<td><%= link_to image_tag("star.png", alt: "Ajouter à votre liste"), { controller: "gist", action: "save", id: k['id'] }, method: :post %></td>
+				</tr>
+
+				<% end %>
+			<% end %>
+		</tbody>
+	</table>
+</div>
